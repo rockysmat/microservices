@@ -1,0 +1,89 @@
+<wsdl:definitions xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:sch="http://com/kswaughs/services/bookSvc" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://com/kswaughs/services/bookSvc" targetNamespace="http://com/kswaughs/services/bookSvc">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://com/kswaughs/services/bookSvc">
+<xs:element name="getBookRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="name" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="getBookResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="book" type="tns:book"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="addBookRequest">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="book" type="tns:book"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:element name="addBookResponse">
+<xs:complexType>
+<xs:sequence>
+<xs:element name="status" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:element>
+<xs:complexType name="book">
+<xs:sequence>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="author" type="xs:string"/>
+<xs:element name="price" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="getBookRequest">
+<wsdl:part element="tns:getBookRequest" name="getBookRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="addBookRequest">
+<wsdl:part element="tns:addBookRequest" name="addBookRequest"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="addBookResponse">
+<wsdl:part element="tns:addBookResponse" name="addBookResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:message name="getBookResponse">
+<wsdl:part element="tns:getBookResponse" name="getBookResponse"> </wsdl:part>
+</wsdl:message>
+<wsdl:portType name="BooksPort">
+<wsdl:operation name="getBook">
+<wsdl:input message="tns:getBookRequest" name="getBookRequest"> </wsdl:input>
+<wsdl:output message="tns:getBookResponse" name="getBookResponse"> </wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addBook">
+<wsdl:input message="tns:addBookRequest" name="addBookRequest"> </wsdl:input>
+<wsdl:output message="tns:addBookResponse" name="addBookResponse"> </wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="BooksPortSoap11" type="tns:BooksPort">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="getBook">
+<soap:operation soapAction=""/>
+<wsdl:input name="getBookRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="getBookResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="addBook">
+<soap:operation soapAction=""/>
+<wsdl:input name="addBookRequest">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="addBookResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="BooksPortService">
+<wsdl:port binding="tns:BooksPortSoap11" name="BooksPortSoap11">
+<soap:address location="http://localhost:8088/MyApp/ws"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

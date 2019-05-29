@@ -1,0 +1,8 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:us="http://techprimers.com/soap-webservice-example">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <us:getUserRequest>
+         <us:name>Shaz</us:name>
+      </us:getUserRequest>
+   </soapenv:Body>
+</soapenv:Envelope>
